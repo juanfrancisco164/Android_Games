@@ -3,15 +3,14 @@ package com.example.games_overspace;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Main2048 extends AppCompatActivity {
+public class MainSenku extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_senku);
     }
 
     public void goToMenu(View view) {
@@ -20,4 +19,3 @@ public class Main2048 extends AppCompatActivity {
         finish();
     }
 }
-

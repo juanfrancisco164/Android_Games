@@ -37,6 +37,7 @@
             android:background="@drawable/rounded_background"
             android:textColor="#FFFFFF"
             android:padding="10dp"
+            android:layout_margin="5dp"
             />
 
         <TextView
@@ -49,7 +50,9 @@
             android:textSize="18sp"
             android:background="@drawable/rounded_background"
             android:textColor="#FFFFFF"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
     <GridLayout
@@ -196,7 +199,7 @@
         android:textColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/btnGoToMenu"
+        android:id="@+id/btnGoToMenuFromGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnStartGame"
@@ -205,6 +208,6 @@
         android:background="@drawable/rounded_background"
         android:padding="5dp"
         android:text="Ir al Menú"
-        android:textColor="#FFFFFF" />
-
+        android:textColor="#FFFFFF"
+        android:onClick="goToMenu"/>
 </RelativeLayout>
