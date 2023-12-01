@@ -128,6 +128,7 @@ public class Main2048 extends AppCompatActivity {
                 }
             }
         }
+        updateUI();
     }
 
     private void moveCellsLeft() {
@@ -138,6 +139,7 @@ public class Main2048 extends AppCompatActivity {
                 }
             }
         }
+        updateUI();
     }
 
     private void moveCellsDown() {
@@ -148,6 +150,7 @@ public class Main2048 extends AppCompatActivity {
                 }
             }
         }
+        updateUI();
     }
 
     private void moveCellsUp() {
@@ -158,7 +161,9 @@ public class Main2048 extends AppCompatActivity {
                 }
             }
         }
+        updateUI();
     }
+
 
     private void moveCell(int fromRow, int fromCol, int toRow, int toCol) {
         int value = board[fromRow][fromCol];
