@@ -14,7 +14,6 @@ public class Main2048 extends AppCompatActivity {
     private TextView[][] cells;
     private GestureDetector gestureDetector;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +30,8 @@ public class Main2048 extends AppCompatActivity {
                 startGame();
             }
         });
+
+        gestureDetector = new GestureDetector(this, new SwipeGestureListener());
     }
 
     private void initCells() {
@@ -65,18 +66,7 @@ public class Main2048 extends AppCompatActivity {
                 count++;
             }
         }
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != 2) {
-                    board[i][j] = 0;
-                }
-            }
-        }
-
-        updateUI();
     }
-
 
     private void updateUI() {
         for (int i = 0; i < 4; i++) {
@@ -86,12 +76,13 @@ public class Main2048 extends AppCompatActivity {
         }
     }
 
-
     public void goToMenu(View view) {
         Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
         finish();
     }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
