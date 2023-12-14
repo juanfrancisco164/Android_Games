@@ -258,7 +258,6 @@ public class Main2048 extends AppCompatActivity {
     private void moveCell(int fromRow, int fromCol, int toRow, int toCol) {
         int value = board[fromRow][fromCol];
         if (board[toRow][toCol] == value && (fromRow != toRow || fromCol != toCol)) {
-            // No fusionar celdas distintas
             board[toRow][toCol] *= 2;
             board[fromRow][fromCol] = 0;
         } else if (board[toRow][toCol] == 0) {
