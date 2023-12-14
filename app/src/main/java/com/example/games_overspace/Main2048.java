@@ -71,7 +71,14 @@ public class Main2048 extends AppCompatActivity {
     private void updateUI() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                cells[i][j].setText(String.valueOf(board[i][j]));
+                TextView cell = cells[i][j];
+                int cellValue = board[i][j];
+
+                if (cellValue == 0) {
+                    cell.setText("");
+                } else {
+                    cell.setText(String.valueOf(cellValue));
+                }
             }
         }
     }
@@ -120,54 +127,138 @@ public class Main2048 extends AppCompatActivity {
         }
     }
 
-    private void moveCellsRight() {
-        for (int row = 0; row < 4; row++) {
-            for (int col = 2; col >= 0; col--) {
-                if (board[row][col] != 0) {
-                    moveCell(row, col, row, col + 1);
-                }
-            }
-        }
-        updateUI();
-    }
-
     private void moveCellsLeft() {
         for (int row = 0; row < 4; row++) {
             for (int col = 1; col < 4; col++) {
                 if (board[row][col] != 0) {
-                    moveCell(row, col, row, col - 1);
+                    moveCell(row, col, row, findTargetColLeft(row, col));
                 }
             }
         }
+        addRandomTwo();
         updateUI();
+    }
+
+    private int findTargetColLeft(int row, int col) {
+        for (int targetCol = col - 1; targetCol >= 0; targetCol--) {
+            if (board[row][targetCol] != 0) {
+                if (board[row][targetCol] == board[row][col]) {
+                    return targetCol;
+                } else {
+                    return targetCol + 1;
+                }
+            }
+        }
+        return 0;
     }
 
     private void moveCellsDown() {
         for (int col = 0; col < 4; col++) {
             for (int row = 2; row >= 0; row--) {
                 if (board[row][col] != 0) {
-                    moveCell(row, col, row + 1, col);
+                    moveCell(row, col, findTargetRowDown(row, col), col);
                 }
             }
         }
+        addRandomTwo();
         updateUI();
+    }
+
+    private int findTargetRowDown(int row, int col) {
+        for (int targetRow = row + 1; targetRow < 4; targetRow++) {
+            if (board[targetRow][col] != 0) {
+                if (board[targetRow][col] == board[row][col]) {
+                    return targetRow;
+                } else {
+                    return targetRow - 1;
+                }
+            }
+        }
+        return 3;
     }
 
     private void moveCellsUp() {
         for (int col = 0; col < 4; col++) {
             for (int row = 1; row < 4; row++) {
                 if (board[row][col] != 0) {
-                    moveCell(row, col, row - 1, col);
+                    moveCell(row, col, findTargetRowUp(row, col), col);
                 }
             }
         }
+        addRandomTwo();
         updateUI();
     }
 
+    private int findTargetRowUp(int row, int col) {
+        for (int targetRow = row - 1; targetRow >= 0; targetRow--) {
+            if (board[targetRow][col] != 0) {
+                if (board[targetRow][col] == board[row][col]) {
+                    return targetRow;
+                } else {
+                    return targetRow + 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    private void moveCellsRight() {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 2; col >= 0; col--) {
+                if (board[row][col] != 0) {
+                    moveCell(row, col, row, findTargetColRight(row, col));
+                }
+            }
+        }
+        addRandomTwo();
+        updateUI();
+    }
+
+    private int findTargetColRight(int row, int col) {
+        for (int targetCol = col + 1; targetCol < 4; targetCol++) {
+            if (board[row][targetCol] != 0) {
+                if (board[row][targetCol] == board[row][col]) {
+                    return targetCol;
+                } else {
+                    return targetCol - 1;
+                }
+            }
+        }
+        return 3;
+    }
+
+    private void addRandomTwo() {
+        int emptyCount = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] == 0) {
+                    emptyCount++;
+                }
+            }
+        }
+
+        if (emptyCount > 0) {
+            int randomIndex = (int) (Math.random() * emptyCount) + 1;
+            int count = 0;
+
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (board[i][j] == 0) {
+                        count++;
+                        if (count == randomIndex) {
+                            board[i][j] = 2; // You can change this to any other value if needed
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private void moveCell(int fromRow, int fromCol, int toRow, int toCol) {
         int value = board[fromRow][fromCol];
-        if (board[toRow][toCol] == value) {
+        if (board[toRow][toCol] == value && (fromRow != toRow || fromCol != toCol)) {
+            // No fusionar celdas distintas
             board[toRow][toCol] *= 2;
             board[fromRow][fromCol] = 0;
         } else if (board[toRow][toCol] == 0) {
@@ -175,4 +266,5 @@ public class Main2048 extends AppCompatActivity {
             board[fromRow][fromCol] = 0;
         }
     }
+
 }
