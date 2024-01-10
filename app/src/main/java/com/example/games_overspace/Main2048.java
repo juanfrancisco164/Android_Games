@@ -1,5 +1,7 @@
 package com.example.games_overspace;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -13,6 +15,9 @@ public class Main2048 extends AppCompatActivity {
     private int[][] board;
     private TextView[][] cells;
     private GestureDetector gestureDetector;
+    private int points = 0;
+    private int record = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void startGame() {
+        points = 0;
         initBoard();
         updateUI();
     }
@@ -81,6 +87,22 @@ public class Main2048 extends AppCompatActivity {
                 }
             }
         }
+
+        TextView textViewPoints = findViewById(R.id.textViewPoints);
+        textViewPoints.setText(String.valueOf(points));
+
+        TextView textViewRecord = findViewById(R.id.textViewRecord);
+
+        if (isGameOver()) {
+            showGameOverPopup();
+
+            if (points > record) {
+                record = points;
+            }
+            points = 0;
+        }
+
+        textViewRecord.setText(String.valueOf(record));
     }
 
     public void goToMenu(View view) {
@@ -246,7 +268,7 @@ public class Main2048 extends AppCompatActivity {
                     if (board[i][j] == 0) {
                         count++;
                         if (count == randomIndex) {
-                            board[i][j] = 2; // You can change this to any other value if needed
+                            board[i][j] = 2;
                             return;
                         }
                     }
@@ -260,10 +282,42 @@ public class Main2048 extends AppCompatActivity {
         if (board[toRow][toCol] == value && (fromRow != toRow || fromCol != toCol)) {
             board[toRow][toCol] *= 2;
             board[fromRow][fromCol] = 0;
+
+            points += board[toRow][toCol];
         } else if (board[toRow][toCol] == 0) {
             board[toRow][toCol] = value;
             board[fromRow][fromCol] = 0;
         }
     }
 
+    private boolean isGameOver() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] == 0) {
+                    return false;
+                }
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if ((i < 3 && board[i][j] == board[i + 1][j]) || (j < 3 && board[i][j] == board[i][j + 1])) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private void showGameOverPopup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("GAME OVER\nHas obtenido: "+ points).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
+    }
 }

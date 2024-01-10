@@ -24,35 +24,52 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/textViewTitle"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:layout_margin="6dp">
 
         <TextView
-            android:id="@+id/textViewPoints"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_weight="1"
             android:text="Points: "
             android:textSize="18sp"
             android:background="@drawable/rounded_background"
             android:textColor="#FFFFFF"
             android:padding="10dp"
-            android:layout_margin="5dp"
-            />
+            android:layout_margin="5dp" />
 
         <TextView
-            android:id="@+id/textViewRecord"
-            android:layout_width="0dp"
+            android:id="@+id/textViewPoints"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_background"
+            android:padding="10dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_weight="1"
             android:text="Record: "
             android:textSize="18sp"
             android:background="@drawable/rounded_background"
             android:textColor="#FFFFFF"
             android:padding="10dp"
+            android:layout_margin="5dp" />
+        <TextView
+            android:id="@+id/textViewRecord"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            />
+            android:background="@drawable/rounded_background"
+            android:padding="10dp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
     <GridLayout
