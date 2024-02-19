@@ -10,10 +10,12 @@ import android.content.Intent;
 
 
 public class MainSenku extends AppCompatActivity {
-
     private GridLayout gridLayoutSenku;
     private TextView[][] textViews;
 
+    private int selectedRow = -1;
+    private int selectedCol = -1;
+    private boolean isCellSelected = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,6 @@ public class MainSenku extends AppCompatActivity {
         }
     }
 
-
     private void handleGameClick(View view) {
         int clickedRow = 0, clickedCol = 0;
         outerloop:
@@ -82,13 +83,41 @@ public class MainSenku extends AppCompatActivity {
             }
         }
 
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                textViews[i][j].setClickable(false);
+        if (!isCellSelected) {
+            if (textViews[clickedRow][clickedCol].getText().toString().equals("1")) {
+                selectedRow = clickedRow;
+                selectedCol = clickedCol;
+                textViews[selectedRow][selectedCol].setBackgroundResource(R.drawable.border_selected);
+                isCellSelected = true;
+            }
+        } else {
+            if (textViews[clickedRow][clickedCol].getText().toString().equals("0") &&
+                    ((Math.abs(clickedRow - selectedRow) == 2 && clickedCol == selectedCol) ||
+                            (Math.abs(clickedCol - selectedCol) == 2 && clickedRow == selectedRow))) {
+                textViews[selectedRow][selectedCol].setText("0");
+                textViews[(clickedRow + selectedRow) / 2][(clickedCol + selectedCol) / 2].setText("0");
+                textViews[clickedRow][clickedCol].setText("1");
+
+                textViews[selectedRow][selectedCol].setBackgroundResource(R.drawable.border_selected);
+
+                isCellSelected = false;
+            } else {
+                textViews[selectedRow][selectedCol].setBackgroundResource(0);
+                selectedRow = clickedRow;
+                selectedCol = clickedCol;
+                textViews[selectedRow][selectedCol].setBackgroundResource(R.drawable.border_selected);
             }
         }
 
-        textViews[clickedRow][clickedCol].setText("X");  // "X" representa un nuevo estado
+        if (!isCellSelected) {
+            textViews[selectedRow][selectedCol].setBackgroundResource(0);
+        }
+
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                textViews[i][j].setClickable(true);
+            }
+        }
     }
 
 

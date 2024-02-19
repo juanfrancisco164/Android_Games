@@ -11,17 +11,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:background="#45B39D">
+        android:background="#4F504F">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Menu OverSpace"
-            android:background="#73C6B6"
-            android:textSize="30dp"
+            android:background="#E1B400"
+            android:textSize="20dp"
             android:padding="20dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/imperial"/>
 
         <Button
             android:id="@+id/btnStart2048"
@@ -33,7 +34,9 @@
             android:onClick="start2048"
             android:text="2048"
             android:layout_margin="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/imperial"/>
 
         <Button
             android:id="@+id/btnStartSenku"
@@ -45,6 +48,8 @@
             android:onClick="startSenku"
             android:text="Senku"
             android:layout_margin="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/imperial"/>
     </LinearLayout>
 </RelativeLayout>
