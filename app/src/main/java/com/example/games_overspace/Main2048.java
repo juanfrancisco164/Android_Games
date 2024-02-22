@@ -17,18 +17,18 @@ public class Main2048 extends AppCompatActivity {
     private GestureDetector gestureDetector;
     private int points = 0;
     private int record = 0;
-
+    private boolean isGameOverDialogShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_2048);
 
         board = new int[4][4];
         cells = new TextView[4][4];
         initCells();
 
-        Button btnStartGame = findViewById(R.id.btnStartGame);
+        TextView btnStartGame = findViewById(R.id.btnStartGame);
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -311,13 +311,21 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void showGameOverPopup() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("GAME OVER\nHas obtenido: "+ points).setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-
-        builder.create().show();
+        if (!isGameOverDialogShown) {
+            isGameOverDialogShown = true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Has obtenido: "+ points)
+                    .setTitle("Game Over")
+                    .setCancelable(false)
+                    .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            startGame();
+                            isGameOverDialogShown = false;
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 }

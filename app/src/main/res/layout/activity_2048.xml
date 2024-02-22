@@ -2,21 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f3f3f3">
+    android:background="@drawable/gradient_drawable">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2048"
-        android:textSize="45sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_background"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:padding="10dp"
-        android:paddingBottom="10dp"/>
+        android:paddingBottom="10dp"
+        android:fontFamily="@font/imperial"/>
 
     <LinearLayout
         android:id="@+id/scoreLayout"
@@ -32,11 +33,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Points: "
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:background="@drawable/rounded_background"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:padding="10dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:fontFamily="@font/imperial"/>
 
         <TextView
             android:id="@+id/textViewPoints"
@@ -46,19 +48,21 @@
             android:background="@drawable/rounded_background"
             android:padding="10dp"
             android:text="0"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="@font/imperial"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Record: "
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:background="@drawable/rounded_background"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:padding="10dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:fontFamily="@font/imperial"/>
         <TextView
             android:id="@+id/textViewRecord"
             android:layout_width="100dp"
@@ -67,8 +71,9 @@
             android:background="@drawable/rounded_background"
             android:padding="10dp"
             android:text="0"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="@font/imperial"/>
 
     </LinearLayout>
 
@@ -203,28 +208,27 @@
             android:text="0" />
     </GridLayout>
 
-    <Button
-        android:id="@+id/btnStartGame"
+    <TextView
+        android:id="@+id/undoButton2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/gridLayout"
+        android:background="@drawable/undo_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/rounded_background"
-        android:padding="5dp"
+        android:padding="15dp"
+        android:drawableStart="@drawable/baseline_undo_24"
+        android:onClick="undo_2048" />
+    <TextView
+        android:id="@+id/btnStartGame"
+        android:layout_below="@id/undoButton2048"
         android:text="Comenzar Juego"
-        android:textColor="#FFFFFF" />
+        style="@style/ButtonStyle" />
 
-    <Button
+    <TextView
         android:id="@+id/btnGoToMenuFromGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@id/btnStartGame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_background"
-        android:padding="5dp"
         android:text="Ir al Menú"
-        android:textColor="#FFFFFF"
-        android:onClick="goToMenu"/>
+        android:onClick="goToMenu"
+        style="@style/ButtonStyle" />
 </RelativeLayout>

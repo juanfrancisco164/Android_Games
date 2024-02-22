@@ -2,20 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f3f3f3">
+    android:background="@drawable/gradient_drawable">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Senku"
-        android:textSize="32sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_background"
-        android:textColor="#FFFFFF"
-        android:padding="5dp"/>
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:paddingBottom="10dp"
+        android:fontFamily="@font/imperial"/>
 
     <LinearLayout
         android:id="@+id/scoreLayout"
@@ -24,25 +26,39 @@
         android:orientation="horizontal"
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="8dp">
-
         <TextView
             android:id="@+id/textViewPoints"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Points: "
+            android:text="Time: "
             android:textSize="18sp"
             android:background="@drawable/rounded_background"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:padding="10dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:fontFamily="@font/imperial"/>
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_background"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/imperial"/>
     </LinearLayout>
 
     <GridLayout
         android:id="@+id/gridLayoutSenku"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
         android:layout_below="@id/scoreLayout"
         android:layout_centerInParent="true"
         android:layout_marginStart="16dp"
@@ -52,281 +68,34 @@
         android:layout_weight="1"
         android:background="@drawable/rounded_background"
         android:columnCount="7"
-        android:padding="5dp"
+        android:padding="10dp"
         android:rowCount="7"
-        android:textColor="#FFFFFF">
+        android:useDefaultMargins="true">
 
-        <TextView
-            android:id="@+id/textView1_1"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
 
-        <TextView
-            android:id="@+id/textView1_2"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView1_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0"
-            android:textColorHighlight="#C1644797" />
-
-        <TextView
-            android:id="@+id/textView1_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView1_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView1_6"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView1_7"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_1"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_2"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_6"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView2_7"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_1"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_2"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_6"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView3_7"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_1"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_2"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_6"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4_7"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_1"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_2"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_6"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView5_7"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_1"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_2"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_6"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView6_7"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_1"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_2"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_3"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_4"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_5"
-            style="@style/GridLayoutTextViewStyle"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_6"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView7_7"
-            style="@style/GridLayoutTextInvisible"
-            android:text="0" />
     </GridLayout>
-
-    <Button
-        android:id="@+id/btnStartGame"
+    
+    <TextView
+        android:id="@+id/undoButtonSenku"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/gridLayoutSenku"
+        android:background="@drawable/undo_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/rounded_background"
-        android:padding="5dp"
+        android:padding="15dp"
+        android:drawableStart="@drawable/baseline_undo_24"
+        android:onClick="undo_senku" />
+    <TextView
+        android:id="@+id/btnStartGame"
+        android:layout_below="@id/undoButtonSenku"
         android:text="Comenzar Juego"
-        android:textColor="#FFFFFF" />
-
-    <Button
+        android:onClick="startNewGame"
+        style="@style/ButtonStyle"/>
+    <TextView
         android:id="@+id/btnGoToMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@id/btnStartGame"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_background"
-        android:padding="5dp"
         android:text="Ir al Menú"
-        android:textColor="#FFFFFF"
-        android:onClick="goToMenu" />
-
-
+        android:onClick="goToMenu"
+        style="@style/ButtonStyle" />
 </RelativeLayout>
