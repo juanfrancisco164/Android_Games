@@ -22,4 +22,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainSenku.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Deshabilitar el botón de retroceso. IGNORAR ERROR, funciona
+    }
 }
