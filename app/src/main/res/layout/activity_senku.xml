@@ -91,7 +91,7 @@
         android:layout_below="@id/undoButtonSenku"
         android:text="Comenzar Juego"
         android:onClick="startNewGame"
-        style="@style/ButtonStyle"/>
+        style="@style/ButtonStyle" />
     <TextView
         android:id="@+id/btnGoToMenu"
         android:layout_below="@id/btnStartGame"

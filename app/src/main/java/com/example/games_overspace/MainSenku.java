@@ -23,8 +23,8 @@ public class MainSenku extends AppCompatActivity {
     TextView positionSelected = null;
     private TextView timeView;
     private CountDownTimer timer;
-
     GridLayout gridLayout;
+    View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,7 +251,7 @@ public class MainSenku extends AppCompatActivity {
                 .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        startNewGame();
+                        startNewGame(view);
                     }
                 });
         AlertDialog alert = builder.create();
@@ -279,7 +279,7 @@ public class MainSenku extends AppCompatActivity {
                 .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        startNewGame();
+                        startNewGame(view);
                     }
                 });
         AlertDialog alert = builder.create();
@@ -308,7 +308,7 @@ public class MainSenku extends AppCompatActivity {
         timer.cancel();
     }
 
-    public void startNewGame() {
+    public void startNewGame(View view) {
         resetBoard();
         restartTimer();
     }
