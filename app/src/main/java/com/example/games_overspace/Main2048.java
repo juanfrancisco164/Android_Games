@@ -3,6 +3,7 @@ package com.example.games_overspace;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -29,6 +30,12 @@ public class Main2048 extends AppCompatActivity {
         initCells();
 
         TextView btnStartGame = findViewById(R.id.btnStartGame);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        record = sharedPreferences.getInt("bestScore2048", 0);
+        TextView textViewRecord = findViewById(R.id.textViewRecord);
+        textViewRecord.setText(String.valueOf(record));
+
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,6 +319,7 @@ public class Main2048 extends AppCompatActivity {
 
     private void showGameOverPopup() {
         if (!isGameOverDialogShown) {
+            updateRecordIfNeeded();
             isGameOverDialogShown = true;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Has obtenido: "+ points)
@@ -328,4 +336,18 @@ public class Main2048 extends AppCompatActivity {
             alert.show();
         }
     }
+
+    private void updateRecordIfNeeded() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        int bestScore2048 = sharedPreferences.getInt("bestScore2048", 0);
+        if (points > bestScore2048) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("bestScore2048", points);
+            editor.apply();
+
+            TextView textViewRecord = findViewById(R.id.textViewRecord);
+            textViewRecord.setText(String.valueOf(points));
+        }
+    }
+
 }

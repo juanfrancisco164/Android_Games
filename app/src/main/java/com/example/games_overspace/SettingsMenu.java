@@ -14,6 +14,8 @@ import android.widget.TextView;
 public class SettingsMenu extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextPassword;
+    private TextView highScore2048;
+    private TextView highScoreSenku;
 
     private SharedPreferences sharedPreferences;
 
@@ -27,11 +29,11 @@ public class SettingsMenu extends AppCompatActivity {
         editTextUsername = findViewById(R.id.usernameEditText);
         editTextPassword = findViewById(R.id.passwordEditText);
 
-        TextView highScore2048 = findViewById(R.id.highScore2048);
-        TextView highScoreSenku = findViewById(R.id.highScoreSenku);
+        highScore2048 = findViewById(R.id.highScore2048);
+        highScoreSenku = findViewById(R.id.highScoreSenku);
 
-        highScore2048.setText(""+sharedPreferences.getInt("bestScore2048", 0));
-        highScoreSenku.setText(""+sharedPreferences.getInt("bestScoreSenku", 0));
+        highScore2048.setText("" + sharedPreferences.getInt("bestScore2048", 0));
+        highScoreSenku.setText("" + sharedPreferences.getInt("bestScoreSenku", 0));
 
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,4 +75,12 @@ public class SettingsMenu extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        highScore2048.setText("" + sharedPreferences.getInt("bestScore2048", 0));
+        highScoreSenku.setText("" + sharedPreferences.getInt("bestScoreSenku", 0));
+    }
+
 }
