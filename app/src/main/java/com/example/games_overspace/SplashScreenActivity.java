@@ -28,7 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        Intent intent = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
+                        Intent intent = new Intent(SplashScreenActivity.this, Login.class);
                         startActivity(intent);
                         finish();
                     }

@@ -23,6 +23,11 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goSettings(View view) {
+        Intent intent = new Intent(this, SettingsMenu.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         // Deshabilitar el botón de retroceso. IGNORAR ERROR, funciona

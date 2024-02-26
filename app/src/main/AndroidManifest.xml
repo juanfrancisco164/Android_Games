@@ -27,7 +27,6 @@
         <!-- MainMenuActivity sin el filtro de intenciones MAIN y LAUNCHER -->
         <activity
             android:name=".MainMenuActivity"
-            android:exported="true"
             android:label="@string/app_name" />
 
         <activity
@@ -37,5 +36,19 @@
         <activity
             android:name=".MainSenku"
             android:label="@string/app_name"/>
+
+        <activity
+            android:name=".Login"
+            android:exported="true"
+            android:label="@string/app_name"/>
+
+        <activity
+            android:name=".Register"
+            android:label="@string/app_name"/>
+
+        <activity
+            android:name=".SettingsMenu"
+            android:label="@string/app_name"/>
+
     </application>
 </manifest>

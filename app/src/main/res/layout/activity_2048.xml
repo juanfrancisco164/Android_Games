@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/textViewPoints"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_background"
@@ -65,7 +65,7 @@
             android:fontFamily="@font/imperial"/>
         <TextView
             android:id="@+id/textViewRecord"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_background"

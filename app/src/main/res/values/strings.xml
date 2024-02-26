@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">d20 GAME CENTER</string>
+    <string name="hint_username" />
+    <string name="hint_password" />
 </resources>
