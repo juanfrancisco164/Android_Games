@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class Login extends AppCompatActivity {
     private EditText usernameEditText;
@@ -24,7 +25,7 @@ public class Login extends AppCompatActivity {
         usernameEditText = findViewById(R.id.editTextUsernameLogin);
         passwordEditText = findViewById(R.id.editTextPasswordLogin);
 
-        Button registerButton = findViewById(R.id.buttonRegister);
+        TextView registerButton = findViewById(R.id.buttonRegister);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +33,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        Button sendButton = findViewById(R.id.buttonLogin);
+        TextView sendButton = findViewById(R.id.buttonLogin);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

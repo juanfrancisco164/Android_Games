@@ -6,48 +6,28 @@
     tools:context=".MainMenuActivity">
 
     <LinearLayout
-        android:id="@+id/titleLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="#232323"
+        android:background="#99A4ADFF"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/recyclerViewMenu"
+        android:layout_margin="30dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#A4ADFF"
-            android:fontFamily="@font/imperial"
-            android:padding="20dp"
-            android:text="Menu OverSpace"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
-
+            style="@style/tittleWelcome"
+            android:text="Welcome," />
         <TextView
-            android:id="@+id/btnStart2048"
-            style="@style/ButtonStyle"
-            android:layout_below="@id/btnStartSenku"
-            android:onClick="start2048"
-            android:text="2048" />
-
-        <TextView
-            android:id="@+id/btnStartSenku"
-            style="@style/ButtonStyle"
-            android:layout_below="@id/titleLayout"
-            android:onClick="startSenku"
-            android:text="Senku" />
-
-        <TextView
-            android:id="@+id/settingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btnStartSenku"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/baseline_settings_24"
-            android:onClick="goSettings"
-            android:padding="5dp"/>
+            android:id="@+id/nameUserMenu"
+            style="@style/tittleWelcome"
+            android:text="" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMenu"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>

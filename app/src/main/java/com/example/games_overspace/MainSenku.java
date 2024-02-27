@@ -13,6 +13,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import java.util.Arrays;
 
@@ -23,6 +24,7 @@ public class MainSenku extends AppCompatActivity {
     TextView positionSelected = null;
     private TextView timeView;
     private CountDownTimer timer;
+    private long timeLeftInMillis;
     GridLayout gridLayout;
     View view;
     @Override
@@ -244,6 +246,8 @@ public class MainSenku extends AppCompatActivity {
     }
 
     private void showWinDialog() {
+        long secondsLeft = timeLeftInMillis / 1000;
+        saveWinTime(secondsLeft);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Another try?")
                 .setTitle("Congratulations")
@@ -256,6 +260,13 @@ public class MainSenku extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void saveWinTime(long secondsLeft) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("bestTimeSenku", secondsLeft);
+        editor.apply();
     }
 
     private void deletePiece(PositionSenkuPiece position){
@@ -287,9 +298,10 @@ public class MainSenku extends AppCompatActivity {
     }
 
     private void startCountdownTimer() {
-        timer = new CountDownTimer(300000, 1000) {
+        timer = new CountDownTimer(600000, 1000) {
             public void onTick(long millisUntilFinished) {
-                timeView.setText(""+(millisUntilFinished / 1000));
+                timeView.setText("" + (millisUntilFinished / 1000));
+                timeLeftInMillis = millisUntilFinished;
             }
             public void onFinish() {
                 showGameOverDialog();

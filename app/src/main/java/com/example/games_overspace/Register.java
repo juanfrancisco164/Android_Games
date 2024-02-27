@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class Register extends AppCompatActivity {
     private EditText usernameEditText;
@@ -24,14 +27,15 @@ public class Register extends AppCompatActivity {
         usernameEditText = findViewById(R.id.editTextRegister);
         passwordEditText = findViewById(R.id.editTextPasswordRegister);
 
-        Button loginButton = findViewById(R.id.backToLogin);
+        TextView loginButton = findViewById(R.id.backToLogin);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openLoginPage();
             }
         });
-        Button sendButton = findViewById(R.id.buttonSubmitRegister);
+
+        TextView sendButton = findViewById(R.id.buttonSubmitRegister);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +92,6 @@ public class Register extends AppCompatActivity {
                 .setTitle("Error")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Cierra el diálogo (no necesitas hacer nada aquí porque solo es un mensaje de error)
                     }
                 });
         AlertDialog dialog = builder.create();

@@ -41,7 +41,7 @@
             android:fontFamily="@font/imperial"/>
         <TextView
             android:id="@+id/timeView"
-            android:layout_width="20dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
@@ -90,13 +90,13 @@
     <TextView
         android:id="@+id/btnStartGame"
         android:layout_below="@id/undoButtonSenku"
-        android:text="Comenzar Juego"
+        android:text="New Game"
         android:onClick="startNewGame"
         style="@style/ButtonStyle" />
     <TextView
         android:id="@+id/btnGoToMenu"
         android:layout_below="@id/btnStartGame"
-        android:text="Ir al Menú"
+        android:text="Back to menu"
         android:onClick="goToMenu"
         style="@style/ButtonStyle" />
 </RelativeLayout>

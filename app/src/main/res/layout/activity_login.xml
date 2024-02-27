@@ -3,39 +3,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".LoginPage">
+        tools:context=".LoginPage"
+        android:background="@drawable/gradient_drawable"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#A4ADFF"
+            android:fontFamily="@font/imperial"
+            android:padding="20dp"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/editTextUsernameLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="Username"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            style="@style/editTextStyle"/>
 
         <EditText
             android:id="@+id/editTextPasswordLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            style="@style/editTextStyle"/>
 
-        <Button
+        <TextView
             android:id="@+id/buttonLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
             android:text="Login"/>
 
-        <Button
+        <TextView
             android:id="@+id/buttonRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"/>
+            style="@style/ButtonStyle"
+            android:text="Register now!"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

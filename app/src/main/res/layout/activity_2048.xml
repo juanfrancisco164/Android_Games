@@ -219,16 +219,17 @@
         android:padding="15dp"
         android:drawableStart="@drawable/baseline_undo_24"
         android:onClick="undo_2048" />
+
     <TextView
         android:id="@+id/btnStartGame"
         android:layout_below="@id/undoButton2048"
-        android:text="Comenzar Juego"
+        android:text="New Game"
         style="@style/ButtonStyle" />
 
     <TextView
         android:id="@+id/btnGoToMenuFromGame"
         android:layout_below="@id/btnStartGame"
-        android:text="Ir al Menú"
+        android:text="Back to menu"
         android:onClick="goToMenu"
         style="@style/ButtonStyle" />
 </RelativeLayout>
