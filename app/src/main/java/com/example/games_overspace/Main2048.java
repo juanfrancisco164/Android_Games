@@ -20,6 +20,10 @@ public class Main2048 extends AppCompatActivity {
     private int record = 0;
     private boolean isGameOverDialogShown = false;
 
+    private int[][] previousBoard = new int[4][4];
+    private int previousPoints = 0;
+    private boolean canUndo = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,7 +160,17 @@ public class Main2048 extends AppCompatActivity {
         }
     }
 
+    private void saveCurrentState() {
+        for (int i = 0; i < 4; i++) {
+            System.arraycopy(board[i], 0, previousBoard[i], 0, 4);
+        }
+        previousPoints = points;
+        canUndo = true;
+    }
+
+
     private void moveCellsLeft() {
+        saveCurrentState();
         for (int row = 0; row < 4; row++) {
             for (int col = 1; col < 4; col++) {
                 if (board[row][col] != 0) {
@@ -182,6 +196,7 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void moveCellsDown() {
+        saveCurrentState();
         for (int col = 0; col < 4; col++) {
             for (int row = 2; row >= 0; row--) {
                 if (board[row][col] != 0) {
@@ -207,6 +222,7 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void moveCellsUp() {
+        saveCurrentState();
         for (int col = 0; col < 4; col++) {
             for (int row = 1; row < 4; row++) {
                 if (board[row][col] != 0) {
@@ -232,6 +248,7 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void moveCellsRight() {
+        saveCurrentState();
         for (int row = 0; row < 4; row++) {
             for (int col = 2; col >= 0; col--) {
                 if (board[row][col] != 0) {
@@ -322,7 +339,7 @@ public class Main2048 extends AppCompatActivity {
             updateRecordIfNeeded();
             isGameOverDialogShown = true;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Has obtenido: "+ points)
+            builder.setMessage("Has obtenido: " + points)
                     .setTitle("Game Over")
                     .setCancelable(false)
                     .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
@@ -349,5 +366,22 @@ public class Main2048 extends AppCompatActivity {
             textViewRecord.setText(String.valueOf(points));
         }
     }
-
+    public void undoLastMove(View view) {
+        if (canUndo) {
+            for (int i = 0; i < 4; i++) {
+                System.arraycopy(previousBoard[i], 0, board[i], 0, 4);
+            }
+            points = previousPoints;
+            updateUI();
+            canUndo = false;
+        } else {
+            showCannotUndoDialog();
+        }
+    }
+    private void showCannotUndoDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage("No puedes deshacer más de una vez por movimiento.")
+                .setPositiveButton("OK", null)
+                .show();
+    }
 }

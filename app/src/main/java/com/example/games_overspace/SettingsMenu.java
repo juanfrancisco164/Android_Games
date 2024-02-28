@@ -33,7 +33,7 @@ public class SettingsMenu extends AppCompatActivity {
         highScoreSenku = findViewById(R.id.highScoreSenku);
 
         highScore2048.setText("" + sharedPreferences.getInt("bestScore2048", 0));
-        long bestTimeSenku = sharedPreferences.getLong("bestTimeSenku", 0);
+        long bestTimeSenku = sharedPreferences.getLong("bestTimeSenku", 0); // Utiliza getLong aquí
         if (bestTimeSenku > 0) {
             highScoreSenku.setText(bestTimeSenku + " seconds");
         } else {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_drawable">
@@ -213,12 +214,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/gridLayout"
-        android:background="@drawable/undo_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:padding="15dp"
+        android:background="@drawable/undo_button"
         android:drawableStart="@drawable/baseline_undo_24"
-        android:onClick="undo_2048" />
+        android:onClick="undoLastMove"
+        android:padding="15dp"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/btnStartGame"
@@ -228,8 +230,9 @@
 
     <TextView
         android:id="@+id/btnGoToMenuFromGame"
+        style="@style/ButtonStyle"
         android:layout_below="@id/btnStartGame"
-        android:text="Back to menu"
         android:onClick="goToMenu"
-        style="@style/ButtonStyle" />
+        android:text="Back to menu"
+        tools:ignore="TouchTargetSizeCheck" />
 </RelativeLayout>
