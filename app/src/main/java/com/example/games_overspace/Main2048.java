@@ -61,6 +61,40 @@ public class Main2048 extends AppCompatActivity {
     }
 
     private void startGame() {
+        new AlertDialog.Builder(this)
+                .setTitle("Nueva Partida")
+                .setMessage("¿Estás seguro de que quieres comenzar una nueva partida?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (points > record) {
+                            updateRecordIfNeeded();
+                            showWinDialog();
+                        }
+                        resetGame();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void showWinDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("¡Nuevo récord!")
+                .setMessage("¡Has establecido un nuevo récord con " + points + " puntos!")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        resetGame();
+                    }
+                })
+                .show();
+    }
+
+    private void resetGame() {
+        if (points > record) {
+            updateRecordIfNeeded();
+        }
         points = 0;
         initBoard();
         updateUI();
@@ -361,9 +395,10 @@ public class Main2048 extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("bestScore2048", points);
             editor.apply();
+            record = points;
 
             TextView textViewRecord = findViewById(R.id.textViewRecord);
-            textViewRecord.setText(String.valueOf(points));
+            textViewRecord.setText(String.valueOf(record));
         }
     }
     public void undoLastMove(View view) {
