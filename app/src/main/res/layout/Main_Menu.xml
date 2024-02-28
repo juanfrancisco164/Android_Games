@@ -6,22 +6,24 @@
     tools:context=".MainMenuActivity"
     android:orientation="vertical"
     android:gravity="center">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#99A4ADFF"
+            android:background="@drawable/rounded_background"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_centerInParent="true"
             android:layout_above="@id/recyclerViewMenu"
-            android:layout_margin="30dp">
+            android:layout_margin="30dp"
+            android:padding="5dp">
 
             <TextView
-                style="@style/tittleWelcome"
+                style="@style/tittleStyle"
                 android:text="Welcome," />
             <TextView
                 android:id="@+id/nameUserMenu"
-                style="@style/tittleWelcome"
+                style="@style/tittleStyle"
                 android:text="" />
         </LinearLayout>
 

@@ -51,18 +51,25 @@ public class Register extends AppCompatActivity {
 
     public void handleRegister() {
         String username = usernameEditText.getText().toString();
-        if (!username.equals("") && !checkIfUserExists(username)){
-            String password = passwordEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        if (!username.isEmpty() && !password.isEmpty() && !checkIfUserExists(username)) {
             SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
+
             editor.putString("username", username);
             editor.putString("password", password);
+
+            editor.putInt("bestScore2048", 0);
+            editor.putLong("bestTimeSenku", 0);
+
             editor.apply();
+
             showOkMessage();
-        }else{
+        } else {
             showErrorMessage();
         }
     }
+
 
     private boolean checkIfUserExists(String username) {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
