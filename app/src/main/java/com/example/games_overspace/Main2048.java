@@ -32,13 +32,15 @@ public class Main2048 extends AppCompatActivity {
         cells = new TextView[4][4];
         initCells();
 
-        TextView btnStartGame = findViewById(R.id.btnStartGame);
-
         SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         record = sharedPreferences.getInt("bestScore2048", 0);
         TextView textViewRecord = findViewById(R.id.textViewRecord);
         textViewRecord.setText(String.valueOf(record));
 
+        initBoard();
+        updateUI();
+
+        TextView btnStartGame = findViewById(R.id.btnStartGame);
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -380,16 +382,19 @@ public class Main2048 extends AppCompatActivity {
 
     private void showGameOverPopup() {
         if (!isGameOverDialogShown) {
-            updateRecordIfNeeded();
+            if (points > record) {
+                updateRecordIfNeeded();
+                showWinDialog();
+            }
             isGameOverDialogShown = true;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Has obtenido: " + points)
+            builder.setMessage("Se acabó la partida, has obtenido: " + points)
                     .setTitle("Game Over")
                     .setCancelable(false)
-                    .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Otra partida", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
-                            startGame();
+                            resetGame();
                             isGameOverDialogShown = false;
                         }
                     });

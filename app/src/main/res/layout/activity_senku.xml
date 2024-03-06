@@ -84,8 +84,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:padding="15dp"
-        android:drawableStart="@drawable/baseline_undo_24"
-        android:onClick="undo_senku" />
+        android:drawableStart="@drawable/baseline_undo_24" />
 
     <TextView
         android:id="@+id/btnStartGame"

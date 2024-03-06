@@ -16,12 +16,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 
 public class MainSenku extends AppCompatActivity {
+    Stack <int [][]> moveHistory = new Stack<>();
     int[][] board = new int[7][7];
+    int[][] lastMove = new int[7][7];
     TextView pieceSelected = null;
     TextView positionSelected = null;
+    private TextView undoButton;
     private TextView timeView;
     private CountDownTimer timer;
     private long timeLeftInMillis;
@@ -33,6 +37,7 @@ public class MainSenku extends AppCompatActivity {
         setContentView(R.layout.activity_senku);
         gridLayout = findViewById(R.id.gridLayoutSenku);
         timeView = findViewById(R.id.timeView);
+        undoButton = findViewById(R.id.undoButtonSenku);
 
         createTableSenku();
         startCountdownTimer();
@@ -43,6 +48,63 @@ public class MainSenku extends AppCompatActivity {
                 goToMenu();
             }
         });
+        findViewById(R.id.undoButtonSenku).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                undoLastMove();
+            }
+        });
+    }
+
+    private void undoLastMove() {
+        redrawBoard();
+        undoButtonInvisible();
+    }
+
+    private void undoButtonVisible() {
+        undoButton.setVisibility(View.VISIBLE);
+    }
+
+    private void undoButtonInvisible() {
+        undoButton.setVisibility(View.INVISIBLE);
+    }
+
+    private void redrawBoard() {
+        gridLayout.removeAllViews();
+        createBaseBoard();
+
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                board[row][column] = lastMove[row][column];
+            }
+        }
+
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                if (board[row][column] == 2) {
+                    TextView textView = new TextView(new ContextThemeWrapper(this, R.style.pieceStyle));
+                    textView.setBackgroundResource(R.drawable.piece_senku);
+                    addClickListenerToPiece(textView);
+                    GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        params.rowSpec = GridLayout.spec(row, 1f);
+                        params.columnSpec = GridLayout.spec(column, 1f);
+                        textView.setLayoutParams(params);
+                    }
+                    gridLayout.addView(textView);
+                    PositionSenkuPiece position = new PositionSenkuPiece(row, column, "piece");
+                    textView.setTag(position);
+                }
+            }
+        }
+    }
+
+    private void saveLastMove() {
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                lastMove[row][column] = board[row][column];
+            }
+        }
     }
 
     private void createBaseBoard() {
@@ -63,8 +125,6 @@ public class MainSenku extends AppCompatActivity {
                     PositionSenkuPiece position = new PositionSenkuPiece(row, column, "void");
                     textView.setTag(position);
                 }
-
-
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     params.rowSpec = GridLayout.spec(row, 1f);
@@ -152,6 +212,8 @@ public class MainSenku extends AppCompatActivity {
                         } else if (checkWin()){
                             showWinDialog();
                         }
+
+                        undoButtonVisible();
                     }else{
                         System.out.println("No se puede mover");
                     }
@@ -169,11 +231,13 @@ public class MainSenku extends AppCompatActivity {
         if (piecePosition.getRow() == movePosition.getRow()){
             if (piecePosition.getColumn() - movePosition.getColumn() == 2){
                 if (board[piecePosition.getRow()][piecePosition.getColumn() - 1] == 2){
+                    saveLastMove();
                     deletePiece(new PositionSenkuPiece(piecePosition.getRow(), piecePosition.getColumn() - 1, "piece"));
                     canMove = true;
                 }
             } else if (movePosition.getColumn() - piecePosition.getColumn() == 2){
                 if (board[piecePosition.getRow()][piecePosition.getColumn() + 1] == 2){
+                    saveLastMove();
                     deletePiece(new PositionSenkuPiece(piecePosition.getRow(), piecePosition.getColumn() + 1, "piece"));
                     canMove = true;
                 }
@@ -181,11 +245,13 @@ public class MainSenku extends AppCompatActivity {
         } else if (piecePosition.getColumn() == movePosition.getColumn()){
             if (piecePosition.getRow() - movePosition.getRow() == 2){
                 if (board[piecePosition.getRow() - 1][piecePosition.getColumn()] == 2){
+                    saveLastMove();
                     deletePiece(new PositionSenkuPiece(piecePosition.getRow() - 1, piecePosition.getColumn(),"piece"));
                     canMove = true;
                 }
             } else if (movePosition.getRow() - piecePosition.getRow() == 2){
                 if (board[piecePosition.getRow() + 1][piecePosition.getColumn()] == 2){
+                    saveLastMove();
                     deletePiece(new PositionSenkuPiece(piecePosition.getRow() + 1, piecePosition.getColumn(),"piece"));
                     canMove = true;
                 }
@@ -248,11 +314,13 @@ public class MainSenku extends AppCompatActivity {
     private void showWinDialog() {
         long secondsLeft = timeLeftInMillis / 1000;
         saveWinTime(secondsLeft);
+
+        String message = "¡Has ganado! Tiempo restante: " + secondsLeft + " segundos.\n¿Quieres intentarlo de nuevo?";
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Another try?")
-                .setTitle("Congratulations")
+        builder.setMessage(message)
+                .setTitle("Felicidades!")
                 .setCancelable(false)
-                .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Otra partida", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                         startNewGame(view);
@@ -284,13 +352,14 @@ public class MainSenku extends AppCompatActivity {
 
     public void showGameOverDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("GAME OVER!!!\nAnother try?")
+        builder.setMessage("Quieres probar de nuevo?")
                 .setTitle("Game over")
                 .setCancelable(false)
-                .setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Otra partida", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        startNewGame(view);
+                        resetBoard();
+                        restartTimer();
                     }
                 });
         AlertDialog alert = builder.create();
@@ -321,9 +390,21 @@ public class MainSenku extends AppCompatActivity {
     }
 
     public void startNewGame(View view) {
-        resetBoard();
-        restartTimer();
+        new AlertDialog.Builder(this)
+                .setTitle("Nueva Partida")
+                .setMessage("¿Estás seguro de que quieres comenzar una nueva partida?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        undoButtonInvisible();
+                        resetBoard();
+                        restartTimer();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
+
 
     private void resetBoard() {
         gridLayout.removeAllViews();
@@ -340,9 +421,26 @@ public class MainSenku extends AppCompatActivity {
         startCountdownTimer();
     }
 
+    private void showCannotUndoDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage("No puedes deshacer más de una vez por movimiento.")
+                .setPositiveButton("OK", null)
+                .show();
+    }
 
     public void goToMenu() {
-        Intent intent = new Intent(this, MainMenuActivity.class);
-        startActivity(intent);
+        new AlertDialog.Builder(this)
+                .setTitle("Volver al menú")
+                .setMessage("¿Estás seguro de que quieres volver al menú principal?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainSenku.this, MainMenuActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

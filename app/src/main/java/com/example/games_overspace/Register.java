@@ -84,7 +84,8 @@ public class Register extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Usuario registrado con éxito.")
                 .setTitle("Éxito")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setCancelable(false)
+                .setPositiveButton("Log In", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         openLoginPage();
                     }

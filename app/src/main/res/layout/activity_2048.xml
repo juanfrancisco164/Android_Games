@@ -108,112 +108,112 @@
             style="@style/GameCell"
             android:layout_row="0"
             android:layout_column="0"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_01"
             style="@style/GameCell"
             android:layout_row="0"
             android:layout_column="1"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_02"
             style="@style/GameCell"
             android:layout_row="0"
             android:layout_column="2"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_03"
             style="@style/GameCell"
             android:layout_row="0"
             android:layout_column="3"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_10"
             style="@style/GameCell"
             android:layout_row="1"
             android:layout_column="0"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_11"
             style="@style/GameCell"
             android:layout_row="1"
             android:layout_column="1"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_12"
             style="@style/GameCell"
             android:layout_row="1"
             android:layout_column="2"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_13"
             style="@style/GameCell"
             android:layout_row="1"
             android:layout_column="3"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_20"
             style="@style/GameCell"
             android:layout_row="2"
             android:layout_column="0"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_21"
             style="@style/GameCell"
             android:layout_row="2"
             android:layout_column="1"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_22"
             style="@style/GameCell"
             android:layout_row="2"
             android:layout_column="2"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_23"
             style="@style/GameCell"
             android:layout_row="2"
             android:layout_column="3"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_30"
             style="@style/GameCell"
             android:layout_row="3"
             android:layout_column="0"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_31"
             style="@style/GameCell"
             android:layout_row="3"
             android:layout_column="1"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_32"
             style="@style/GameCell"
             android:layout_row="3"
             android:layout_column="2"
-            android:text="0" />
+            android:text="" />
 
         <TextView
             android:id="@+id/cell_33"
             style="@style/GameCell"
             android:layout_row="3"
             android:layout_column="3"
-            android:text="0" />
+            android:text="" />
     </GridLayout>
 
     <TextView
