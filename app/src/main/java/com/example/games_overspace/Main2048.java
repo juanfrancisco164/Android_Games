@@ -19,7 +19,6 @@ public class Main2048 extends AppCompatActivity {
     private int points = 0;
     private int record = 0;
     private boolean isGameOverDialogShown = false;
-
     private int[][] previousBoard = new int[4][4];
     private int previousPoints = 0;
     private boolean canUndo = false;
@@ -151,9 +150,20 @@ public class Main2048 extends AppCompatActivity {
     }
 
     public void goToMenu(View view) {
-        Intent intent = new Intent(this, MainMenuActivity.class);
-        startActivity(intent);
-        finish();
+        new AlertDialog.Builder(this)
+                .setTitle("Volver al menú")
+                .setMessage("¿Estás seguro de que quieres volver al menú principal?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        updateRecordIfNeeded();
+                        Intent intent = new Intent(Main2048.this, MainMenuActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     @Override
