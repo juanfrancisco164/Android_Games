@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class Main2048 extends AppCompatActivity {
     private int[][] board;
@@ -133,8 +134,46 @@ public class Main2048 extends AppCompatActivity {
 
                 if (cellValue == 0) {
                     cell.setText("");
+                    cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_0));
                 } else {
                     cell.setText(String.valueOf(cellValue));
+                    switch (cellValue) {
+                        case 2:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_2));
+                            break;
+                        case 4:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_4));
+                            break;
+                        case 8:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_8));
+                            break;
+                        case 16:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_16));
+                            break;
+                        case 32:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_32));
+                            break;
+                        case 64:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_64));
+                            break;
+                        case 128:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_128));
+                            break;
+                        case 256:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_256));
+                            break;
+                        case 512:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_512));
+                            break;
+                        case 1024:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_1024));
+                            break;
+                        case 2048:
+                            cell.setBackgroundColor(ContextCompat.getColor(this, R.color.valor_2048));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
