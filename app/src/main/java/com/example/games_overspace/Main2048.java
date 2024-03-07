@@ -22,6 +22,7 @@ public class Main2048 extends AppCompatActivity {
     private int[][] previousBoard = new int[4][4];
     private int previousPoints = 0;
     private boolean canUndo = false;
+    private TextView undoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class Main2048 extends AppCompatActivity {
         updateUI();
 
         TextView btnStartGame = findViewById(R.id.btnStartGame);
+
+        undoButton = findViewById(R.id.undoButton2048);
+        undoButtonInvisible();
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,7 @@ public class Main2048 extends AppCompatActivity {
                         if (points > record) {
                             updateRecordIfNeeded();
                             showWinDialog();
+                            undoButtonInvisible();
                         }
                         resetGame();
                     }
@@ -226,6 +231,7 @@ public class Main2048 extends AppCompatActivity {
         }
         addRandomTwo();
         updateUI();
+        undoButtonVisible();
     }
 
     private int findTargetColLeft(int row, int col) {
@@ -252,6 +258,7 @@ public class Main2048 extends AppCompatActivity {
         }
         addRandomTwo();
         updateUI();
+        undoButtonVisible();
     }
 
     private int findTargetRowDown(int row, int col) {
@@ -278,6 +285,7 @@ public class Main2048 extends AppCompatActivity {
         }
         addRandomTwo();
         updateUI();
+        undoButtonVisible();
     }
 
     private int findTargetRowUp(int row, int col) {
@@ -304,6 +312,7 @@ public class Main2048 extends AppCompatActivity {
         }
         addRandomTwo();
         updateUI();
+        undoButtonVisible();
     }
 
     private int findTargetColRight(int row, int col) {
@@ -424,14 +433,15 @@ public class Main2048 extends AppCompatActivity {
             points = previousPoints;
             updateUI();
             canUndo = false;
-        } else {
-            showCannotUndoDialog();
+            undoButtonInvisible();
         }
     }
-    private void showCannotUndoDialog() {
-        new AlertDialog.Builder(this)
-                .setMessage("No puedes deshacer más de una vez por movimiento.")
-                .setPositiveButton("OK", null)
-                .show();
+
+    private void undoButtonVisible() {
+        undoButton.setVisibility(View.VISIBLE);
+    }
+
+    private void undoButtonInvisible() {
+        undoButton.setVisibility(View.INVISIBLE);
     }
 }

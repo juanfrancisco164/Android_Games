@@ -421,13 +421,6 @@ public class MainSenku extends AppCompatActivity {
         startCountdownTimer();
     }
 
-    private void showCannotUndoDialog() {
-        new AlertDialog.Builder(this)
-                .setMessage("No puedes deshacer más de una vez por movimiento.")
-                .setPositiveButton("OK", null)
-                .show();
-    }
-
     public void goToMenu() {
         new AlertDialog.Builder(this)
                 .setTitle("Volver al menú")
